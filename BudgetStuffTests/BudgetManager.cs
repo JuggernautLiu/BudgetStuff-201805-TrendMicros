@@ -35,23 +35,24 @@ namespace BudgetStuffTests
                     {
                         timeSpan = DateTime.DaysInMonth(month.Year, month.Month);
                     }
-                    // var timeSpan2 = DateTime.DaysInMonth(month.Year, month.Month) - startdate.Day + 1;
+
                     amount += getAmount(DateTime.DaysInMonth(month.Year, month.Month), BudgetMap[month].amount, timeSpan);
-                    //amount += BudgetMap[month].amount;
                     index++;
                 }
                 return amount;
             }
-            var timeSpan2 = (enddate - startdate).Days+1;
-            return getAmount(DateTime.DaysInMonth(startdate.Year, startdate.Month), BudgetMap[startdate].amount, timeSpan2);
+            else
+            {
+                // one month
+                var timeSpan2 = (enddate - startdate).Days + 1;
+                return getAmount(DateTime.DaysInMonth(startdate.Year, startdate.Month), BudgetMap[startdate].amount, timeSpan2);
+            }
         }
-
+        
         private static decimal getAmount(int monthdays, int amount, int actualdays)
         {
             return amount / monthdays * actualdays;
-            //return BudgetMap[startdate].amount / DateTime.DaysInMonth(startdate.Year, startdate.Month) * (timeSpan.Days + 1);
         }
 
-        // private decimal GetBudget
     }
 }
